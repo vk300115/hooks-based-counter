@@ -3,8 +3,22 @@ import Box from "@mui/material/Box";
 import Typography  from "@mui/material/Typography";
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import AddCircleOutlineTwoToneIcon from '@mui/icons-material/AddCircleOutlineTwoTone';
+import { useState } from "react";
 
 export const Counter = () => {
+  const [count, setCount] = useState(0);
+      const handleIncrement = () => {
+      setCount((count) => count + 1)
+   };
+      const handleDecrement = () => {
+        if (count > 0) {
+          setCount((count) => count - 1)
+        }
+    };
+      const handleReset = () => {
+      setCount(0)
+   };
+
   return (
     <Box sx={{
       marginBottom: "10px",
@@ -13,7 +27,7 @@ export const Counter = () => {
     <Typography variant="h5" component="h2" gutterBottom sx={{
       textAlign: "center",
     }}>
-        Counter: 0
+        Counter: {count}
     </Typography>
     <Box
       sx={{
@@ -25,19 +39,21 @@ export const Counter = () => {
       variant="contained" 
       color="warning" 
       sx={{ margin: "10px" }}
-      startIcon={<RemoveCircleOutlineIcon/>}>
+      startIcon={<RemoveCircleOutlineIcon/>}
+      onClick = {handleDecrement}>
         Decrement</Button>
       <Button 
       variant="contained" 
       color="error" 
       sx={{ margin: "10px" }}
-     >
+      onClick = {handleReset}>
         Reset</Button>
       <Button 
       variant="contained" 
       color="success" 
       sx={{ margin: "10px" }}
-      startIcon={<AddCircleOutlineTwoToneIcon/>}>
+      startIcon={<AddCircleOutlineTwoToneIcon/>}
+      onClick = {handleIncrement}>
         Increment</Button>
     </Box>
     </Box>
